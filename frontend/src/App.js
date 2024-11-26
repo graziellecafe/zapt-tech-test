@@ -1,21 +1,21 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
+import React from "react";
+import "./App.css";
 
 function App() {
-  const [message, setMessage] = useState("");
-
-  useEffect(() => {
-    // Fazendo requisição para o backend
-    axios
-      .get("http://localhost:3001/")
-      .then((response) => setMessage(response.data))
-      .catch((error) => console.error("Erro ao conectar ao backend:", error));
-  }, []);
-
   return (
-    <div>
-      <h1>Sistema Zapt Tech</h1>
-      <p>{message}</p>
+    <div className="container">
+      {/* Metade Esquerda: Mapa */}
+      <div className="map-container">
+        <iframe
+          src="https://app.zapt.tech/#/map?placeId=-ltvysf4acgzdxdhf81y&embed=true"
+          title="Mapa Zapt Tech"
+          style={{ width: "100%", height: "100%", border: "none" }}></iframe>
+      </div>
+      {/* Metade Direita: Lista ou outro conteúdo */}
+      <div className="info-container">
+        <h2>Nome da Loja</h2>
+        <p>Informações da Loja</p>
+      </div>
     </div>
   );
 }
