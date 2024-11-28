@@ -1,20 +1,17 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&family=Quicksand:wght@300..700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
 
-/* Layout Principal */
 .container {
   display: flex;
   height: 100vh;
 }
 
-/* Metade Esquerda (Mapa) */
 .map-container {
-  flex: 1; /* Ocupa metade da largura */
+  flex: 1;
   background-color: #f0f0f0;
 }
 
-/* Metade Direita (Informações) */
 .info-container {
-  flex: 1; /* Ocupa metade da largura */
+  flex: 1;
   padding: 20px;
   background-color: #ffffff;
 }
@@ -25,17 +22,29 @@ body {
 }
 
 .container {
+  background-image: url("./images/bg-site.jpg");
   display: flex;
   flex-direction: column;
   height: 100vh;
 }
 
 .header {
-  background-color: #045ea8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-image: url("./images/bg-site.jpg");
   color: white;
   font-family: "Quicksand", sans-serif;
-  text-align: center;
   padding: 1rem;
+}
+
+.header .logo {
+  margin-right: 30px;
+}
+
+.header h1 {
+  margin: 0;
+  font-size: 2rem;
 }
 
 .content {
@@ -55,22 +64,24 @@ body {
 }
 
 .footer {
-  background-color: #ec5311;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-image: url("./images/bg-contato.jpg");
   color: white;
   font-family: "Quicksand", sans-serif;
-  justify-content: center;
-  align-items: center;
   padding: 1rem;
-  margin-top: 20px;
+  flex-direction: column;
   text-align: center;
 }
 
 .footer h2 {
   margin: 0;
-  font-size: 24px;
+  font-size: 2rem;
+  font-weight: bold;
 }
 
-footer p {
-  margin: 5px 0 0;
-  font-size: 16px;
+.footer p {
+  margin-top: 5px;
+  font-size: 1rem;
 }
