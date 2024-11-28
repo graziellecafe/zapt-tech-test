@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
-import axios from "axios"; // Certifique-se de que o axios está instalado
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import axios from "axios";
 import "./App.css";
 import zaptLogo from "./images/zapt-logo.svg";
-import StoreDetails from "./StoreDetails"; // Importando a página de detalhes da loja
+import StoreDetails from "./StoreDetails"; // Componente para exibir os detalhes da loja
 
 function App() {
   const [stores, setStores] = useState([]); // Estado para armazenar as lojas
@@ -18,13 +18,20 @@ function App() {
   useEffect(() => {
     const fetchStores = async () => {
       try {
+        console.log("Fazendo requisição com os parâmetros:", {
+          placeId,
+          apiKey,
+        });
+
         const response = await axios.get(apiUrl, {
           params: {
             placeId,
             apiKey,
           },
         });
+
         setStores(response.data); // Armazena as lojas no estado
+        console.log(response.data); // Verifique os dados retornados
         setLoading(false); // Finaliza o carregamento
       } catch (error) {
         console.error("Erro ao carregar lojas", error);
@@ -33,12 +40,11 @@ function App() {
     };
 
     fetchStores();
-  }, []); // O array vazio [] faz com que essa requisição seja feita apenas uma vez, quando o componente for montado
+  }, []);
 
   return (
     <Router>
       <div className="container">
-        {/* Cabeçalho */}
         <header className="header">
           <div className="logo">
             <img
@@ -52,6 +58,7 @@ function App() {
 
         {/* Conteúdo Principal */}
         <div className="content">
+          {/* Mapa */}
           <div className="map-container">
             <iframe
               src="https://app.zapt.tech/#/map?placeId=-ltvysf4acgzdxdhf81y&embed=true"
@@ -64,6 +71,7 @@ function App() {
               }}></iframe>
           </div>
 
+          {/* Lista de Lojas */}
           <div className="info-container">
             <h2>Lista de Lojas</h2>
             {loading ? (
@@ -87,17 +95,10 @@ function App() {
         </footer>
       </div>
 
-      {/* Configuração do Roteamento */}
+      {/* Roteamento */}
       <Routes>
-        {/* Rota para exibir os detalhes da loja */}
         <Route path="/loja/:storeId" element={<StoreDetails />} />
-        {/* Caso não seja uma loja específica, mostra a lista de lojas */}
-        <Route
-          path="/"
-          element={
-            <div> {/* A página principal já está sendo exibida acima */} </div>
-          }
-        />
+        <Route path="/" element={<div />} />
       </Routes>
     </Router>
   );
