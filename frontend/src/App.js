@@ -9,40 +9,26 @@ function App() {
   const [stores, setStores] = useState([]); // Estado para armazenar as lojas
   const [loading, setLoading] = useState(true); // Estado para controlar o carregamento
 
-  // URL da API
-  const apiUrl = "https://api.zapt.tech/interests";
-  const apiKey = "26ee8805-55f8-484a-a229-59d813131484";
-  const placeId = "-ltvysf4acgzdxdhf81y";
-
   // Função para buscar as lojas da API
   useEffect(() => {
     const fetchStores = async () => {
       try {
-        console.log("Fazendo requisição com os parâmetros:", {
-          placeId,
-          apiKey,
-        });
+        console.log("Fazendo requisição ao backend...");
 
-        const response = await axios.get(apiUrl, {
-          params: {
-            placeId,
-            apiKey,
-          },
-        });
-
-        // Verifique se a resposta está chegando corretamente
-        console.log("Resposta da API:", response);
+        // Requisição para o backend que irá buscar as lojas
+        const response = await axios.get("http://localhost:3001/stores"); // Alterado para o backend local
 
         if (response.data) {
           setStores(response.data); // Armazena as lojas no estado
+          console.log("Lojas recebidas do backend:", response.data); // Verifique os dados retornados
         } else {
-          console.error("A resposta não contém dados válidos.");
+          console.error("Não há lojas disponíveis.");
         }
 
         setLoading(false); // Finaliza o carregamento
       } catch (error) {
         console.error("Erro ao carregar lojas", error);
-        setLoading(false); // Finaliza o carregamento mesmo em caso de erro
+        setLoading(false); // Finaliza o carregamento
       }
     };
 
