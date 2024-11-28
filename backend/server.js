@@ -14,7 +14,6 @@ const apiKey = "26ee8805-55f8-484a-a229-59d813131484";
 
 app.get("/stores", async (req, res) => {
   try {
-    // Requisição à API da Zapt Tech
     const response = await axios.get(apiUrl, {
       headers: {
         "x-access-token": apiKey, //  falta x-access

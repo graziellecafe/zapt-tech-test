@@ -48,12 +48,7 @@ html {
 
 .map-container {
   flex: 1;
-  background-color: rgba(
-    255,
-    255,
-    255,
-    0.8
-  ); /* Leve fundo branco com opacidade para o mapa */
+  background-color: rgba(255, 255, 255, 0.8);
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   margin-right: 10px;
@@ -72,17 +67,12 @@ iframe {
 .info-container {
   flex: 1;
   padding: 20px;
-  background-color: rgba(
-    255,
-    255,
-    255,
-    0.8
-  ); /* Leve fundo branco com opacidade para a lista de lojas */
+  background-color: rgba(255, 255, 255, 0.8);
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   margin-left: 10px;
-  max-width: 600px; /* Limitar a largura máxima da lista de lojas */
-  overflow-y: auto; /* Permitir rolagem se a lista for muito grande */
+  max-width: 600px;
+  overflow-y: auto;
 }
 
 .info-container h2 {

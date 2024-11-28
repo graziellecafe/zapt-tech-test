@@ -1,8 +1,11 @@
+// App.js
 import React, { useState, useEffect } from "react";
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import axios from "axios";
 import "./App.css";
 import zaptLogo from "./images/zapt-logo.svg";
+import { MapContainer } from "./components/MapContainer";
+import { StoreList } from "./components/StoreList";
 import StoreDetails from "./components/StoreDetails";
 
 function App() {
@@ -48,27 +51,8 @@ function App() {
         </header>
 
         <div className="content">
-          <div className="map-container">
-            <iframe
-              src="https://app.zapt.tech/#/map?placeId=-ltvysf4acgzdxdhf81y&embed=true"
-              title="Zapt Tech Map"
-              style={{
-                width: "100%",
-                height: "100%",
-                border: "none",
-              }}></iframe>
-          </div>
-
-          <div className="iframe-container">
-            <iframe
-              src="https://app.zapt.tech/#/interests?embed=true&placeId=-ltvysf4acgzdxdhf81y"
-              title="Lista de Lojas"
-              style={{
-                width: "100%",
-                height: "100%",
-                border: "none",
-              }}></iframe>
-          </div>
+          <MapContainer />
+          <StoreList />
         </div>
 
         <footer className="footer">
