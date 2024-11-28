@@ -3,32 +3,30 @@ import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import axios from "axios";
 import "./App.css";
 import zaptLogo from "./images/zapt-logo.svg";
-import StoreDetails from "./StoreDetails"; // Componente para exibir os detalhes da loja
+import StoreDetails from "./components/StoreDetails";
 
 function App() {
-  const [stores, setStores] = useState([]); // Estado para armazenar as lojas
-  const [loading, setLoading] = useState(true); // Estado para controlar o carregamento
+  const [stores, setStores] = useState([]); // armazenar lojas
+  const [loading, setLoading] = useState(true); // armazenar carregamentos
 
-  // Função para buscar as lojas da API
   useEffect(() => {
     const fetchStores = async () => {
       try {
         console.log("Fazendo requisição ao backend...");
 
-        // Requisição para o backend que irá buscar as lojas
-        const response = await axios.get("http://localhost:3001/stores"); // Alterado para o backend local
+        const response = await axios.get("http://localhost:3001/stores");
 
         if (response.data) {
-          setStores(response.data); // Armazena as lojas no estado
-          console.log("Lojas recebidas do backend:", response.data); // Verifique os dados retornados
+          setStores(response.data);
+          console.log("Lojas recebidas do backend:", response.data);
         } else {
           console.error("Não há lojas disponíveis.");
         }
 
-        setLoading(false); // Finaliza o carregamento
+        setLoading(false);
       } catch (error) {
         console.error("Erro ao carregar lojas", error);
-        setLoading(false); // Finaliza o carregamento
+        setLoading(false);
       }
     };
 
@@ -38,7 +36,6 @@ function App() {
   return (
     <Router>
       <div className="container">
-        {/* Cabeçalho */}
         <header className="header">
           <div className="logo">
             <img
@@ -50,9 +47,7 @@ function App() {
           <h1>Zapt Tech</h1>
         </header>
 
-        {/* Conteúdo Principal */}
         <div className="content">
-          {/* Mapa */}
           <div className="map-container">
             <iframe
               src="https://app.zapt.tech/#/map?placeId=-ltvysf4acgzdxdhf81y&embed=true"
@@ -64,7 +59,6 @@ function App() {
               }}></iframe>
           </div>
 
-          {/* Lista de Lojas */}
           <div className="iframe-container">
             <iframe
               src="https://app.zapt.tech/#/interests?embed=true&placeId=-ltvysf4acgzdxdhf81y"
@@ -77,14 +71,12 @@ function App() {
           </div>
         </div>
 
-        {/* Rodapé */}
         <footer className="footer">
           <h2>Zapt Tech</h2>
           <p>&copy; 2024 Zapt Tech</p>
         </footer>
       </div>
 
-      {/* Roteamento */}
       <Routes>
         <Route path="/loja/:storeId" element={<StoreDetails />} />
         <Route path="/" element={<div />} />

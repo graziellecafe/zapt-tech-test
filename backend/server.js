@@ -6,19 +6,18 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// Dados para autenticação
+// Autenticação
 const apiUrl =
   "https://app.zapt.tech/#/interests?embed=true&placeId=-ltvysf4acgzdxdhf81y";
 const placeId = "-ltvysf4acgzdxdhf81y";
 const apiKey = "26ee8805-55f8-484a-a229-59d813131484";
 
-// Rota para buscar lojas
 app.get("/stores", async (req, res) => {
   try {
-    // Fazer requisição à API da Zapt Tech
+    // Requisição à API da Zapt Tech
     const response = await axios.get(apiUrl, {
       headers: {
-        "x-access-token": apiKey, // Adiciona o token de acesso no cabeçalho
+        "x-access-token": apiKey, //  falta x-access
       },
       params: {
         placeId,
@@ -26,7 +25,6 @@ app.get("/stores", async (req, res) => {
       },
     });
 
-    // Verificar se há dados e retornar para o frontend
     if (response.data) {
       res.json(response.data);
     } else {
@@ -40,7 +38,6 @@ app.get("/stores", async (req, res) => {
   }
 });
 
-// Endpoint simples para testar se o servidor está funcionando
 app.get("/", (req, res) => {
   res.send("Backend funcionando!");
 });
