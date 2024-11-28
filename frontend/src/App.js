@@ -38,6 +38,7 @@ function App() {
   return (
     <Router>
       <div className="container">
+        {/* Cabeçalho */}
         <header className="header">
           <div className="logo">
             <img
@@ -49,36 +50,30 @@ function App() {
           <h1>Zapt Tech</h1>
         </header>
 
+        {/* Conteúdo Principal */}
         <div className="content">
           {/* Mapa */}
           <div className="map-container">
             <iframe
               src="https://app.zapt.tech/#/map?placeId=-ltvysf4acgzdxdhf81y&embed=true"
-              title="Zapt Tech"
+              title="Zapt Tech Map"
               style={{
                 width: "100%",
                 height: "100%",
                 border: "none",
-                margin: "0",
               }}></iframe>
           </div>
 
           {/* Lista de Lojas */}
-          <div className="info-container">
-            <h2>Lista de Lojas</h2>
-            {loading ? (
-              <p>Carregando lojas...</p>
-            ) : stores.length > 0 ? (
-              <ul>
-                {stores.map((store) => (
-                  <li key={store.id}>
-                    <Link to={`/loja/${store.id}`}>{store.name}</Link>
-                  </li>
-                ))}
-              </ul>
-            ) : (
-              <p>Não há lojas disponíveis.</p>
-            )}
+          <div className="iframe-container">
+            <iframe
+              src="https://app.zapt.tech/#/interests?embed=true&placeId=-ltvysf4acgzdxdhf81y"
+              title="Lista de Lojas"
+              style={{
+                width: "100%",
+                height: "100%",
+                border: "none",
+              }}></iframe>
           </div>
         </div>
 
