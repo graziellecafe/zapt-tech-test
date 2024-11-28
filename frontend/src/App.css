@@ -1,20 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&family=Quicksand:wght@300..700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
 
-.container {
-  display: flex;
-  height: 100vh;
-}
-
-.map-container {
-  flex: 1;
-  background-color: #f0f0f0;
-}
-
-.info-container {
-  flex: 1;
-  padding: 20px;
-  background-color: #ffffff;
-}
 body {
   margin: 0;
   font-family: "Roboto", sans-serif;
@@ -22,17 +7,19 @@ body {
 }
 
 .container {
-  background-image: url("./images/bg-site.jpg");
   display: flex;
   flex-direction: column;
   height: 100vh;
+  background-image: url("./images/bg-site.jpg");
+  background-size: cover; /* Garantir que a imagem cubra toda a tela */
+  background-position: center;
 }
 
 .header {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-image: url("./images/bg-site.jpg");
+  background-color: rgba(0, 0, 0, 0.6);
   color: white;
   font-family: "Quicksand", sans-serif;
   padding: 1rem;
@@ -51,47 +38,43 @@ body {
   display: flex;
   flex: 1;
   justify-content: space-between;
+  padding: 20px;
+  position: relative;
+  z-index: 1;
 }
 
-.map-container,
-.info-container {
+.map-container {
   flex: 1;
-  margin: 10px;
+  background-color: rgba(
+    255,
+    255,
+    255,
+    0.8
+  ); /* Leve fundo branco com opacidade para o mapa */
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
-}
-
-.footer {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-image: url("./images/bg-contato.jpg");
-  color: white;
-  font-family: "Quicksand", sans-serif;
-  padding: 1rem;
-  flex-direction: column;
-  text-align: center;
-}
-
-.footer h2 {
-  margin: 0;
-  font-size: 2rem;
-  font-weight: bold;
-}
-
-.footer p {
-  margin-top: 5px;
-  font-size: 1rem;
+  margin-right: 10px;
 }
 
 .info-container {
-  background-image: url("./images/bg-site.jpg");
-  width: 50%; /* Largura para ocupar metade da tela, você pode ajustar */
+  flex: 1;
   padding: 20px;
-  margin-left: 20px;
-  border: 1px solid #ddd; /* Para demarcar a área */
-  overflow-y: auto;
+  background-color: rgba(
+    255,
+    255,
+    255,
+    0.8
+  ); /* Leve fundo branco com opacidade para a lista de lojas */
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-left: 10px;
+  max-width: 600px; /* Limitar a largura máxima da lista de lojas */
+  overflow-y: auto; /* Permitir rolagem se a lista for muito grande */
+}
+
+.info-container h2 {
+  color: #333;
+  font-family: "Quicksand", sans-serif;
 }
 
 .info-container ul {
@@ -111,4 +94,27 @@ body {
 
 .info-container a:hover {
   text-decoration: underline;
+}
+
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.6); /* Fundo escuro para o rodapé */
+  color: white;
+  font-family: "Quicksand", sans-serif;
+  padding: 1rem;
+  flex-direction: column;
+  text-align: center;
+}
+
+.footer h2 {
+  margin: 0;
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.footer p {
+  margin-top: 5px;
+  font-size: 1rem;
 }

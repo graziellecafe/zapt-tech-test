@@ -30,12 +30,19 @@ function App() {
           },
         });
 
-        setStores(response.data); // Armazena as lojas no estado
-        console.log(response.data); // Verifique os dados retornados
+        // Verifique se a resposta está chegando corretamente
+        console.log("Resposta da API:", response);
+
+        if (response.data) {
+          setStores(response.data); // Armazena as lojas no estado
+        } else {
+          console.error("A resposta não contém dados válidos.");
+        }
+
         setLoading(false); // Finaliza o carregamento
       } catch (error) {
         console.error("Erro ao carregar lojas", error);
-        setLoading(false);
+        setLoading(false); // Finaliza o carregamento mesmo em caso de erro
       }
     };
 
@@ -56,7 +63,6 @@ function App() {
           <h1>Zapt Tech</h1>
         </header>
 
-        {/* Conteúdo Principal */}
         <div className="content">
           {/* Mapa */}
           <div className="map-container">
@@ -64,10 +70,10 @@ function App() {
               src="https://app.zapt.tech/#/map?placeId=-ltvysf4acgzdxdhf81y&embed=true"
               title="Zapt Tech"
               style={{
-                width: "90%",
-                height: "90%",
+                width: "100%",
+                height: "100%",
                 border: "none",
-                margin: "5%",
+                margin: "0",
               }}></iframe>
           </div>
 
@@ -76,7 +82,7 @@ function App() {
             <h2>Lista de Lojas</h2>
             {loading ? (
               <p>Carregando lojas...</p>
-            ) : (
+            ) : stores.length > 0 ? (
               <ul>
                 {stores.map((store) => (
                   <li key={store.id}>
@@ -84,6 +90,8 @@ function App() {
                   </li>
                 ))}
               </ul>
+            ) : (
+              <p>Não há lojas disponíveis.</p>
             )}
           </div>
         </div>
