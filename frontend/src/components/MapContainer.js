@@ -5,7 +5,7 @@ export const MapContainer = () => {
   return (
     <div className="map-container">
       <iframe
-        src="https://app.zapt.tech/#/map?placeId=-ltvysf4acgzdxdhf81y&embed=true"
+        src="https://app.zapt.tech/#/map?placeId=-ltvysf4acgzdxdhf81y&search=true"
         title="Zapt Tech Map"
         style={{
           width: "100%",
