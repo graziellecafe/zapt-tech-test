@@ -22,7 +22,7 @@ npm install
 npm start
 ```
 
-Deve abrir o <b>http://localhost:3000/</b>, renderizando do lado direito o mapa fornecido da <b> Zapt Tech</b> e do lado direito a renderização da <b>lista de lojas</b>.
+Deve abrir o <b>http://localhost:3000/</b>, renderizando do lado esquerdo o mapa fornecido da <b> Zapt Tech</b> e do lado direito a renderização da <b>lista de lojas</b>.
 
 No mapa do lado esquerdo temos a opção de visualizar o Mapa além das opções na parte inferior, como Início, Lista, Notícias e Mais.
 
@@ -30,7 +30,7 @@ No mapa do lado esquerdo temos a opção de visualizar o Mapa além das opções
 
 <h2> 📝   Resolução dos Casos </h2>
 <h3> 👩🏻‍💻 Caso 1 </h3>
-<b>Apresentar Mapa</b>: Integrar via iFrame com o Mapa da Zapt Tech. As instruções de integração estão aqui:
+<b>Apresentar Mapa</b>: Para isso, integrar via iFrame com o Mapa da Zapt Tech. As instruções de integração estão aqui:
 
 ```js
 http://docs.zapt.tech/#ZaptMapsSDK
@@ -43,7 +43,7 @@ Dados para integração:
 - API_KEY: 26ee8805-55f8-484a-a229-59d813131484
 ```
 
-Foi codificado o componente MapContainer.js que integra via iframe o link disponibilizado na documentação o mapa de exemplo para resolução do desafio técnico pela Zapt Tech. Foi adicionado algumas opções para ser mostrado junto ao mapa como <b>Início, Mapa, Lista, News e Mais</b> e a opção de busca e seleção entre os tipos de fornecedores: <b> Alimentação, Lojas e Serviços</b>.
+Para a resolução do Caso 1, foi codificado o componente <b>MapContainer.js</b> que integra via iframe o link disponibilizado na documentação o mapa de exemplo para resolução do desafio técnico pela Zapt Tech. Foi adicionado algumas opções para ser mostrado junto ao mapa como <b>Início, Mapa, Lista, News e Mais</b> e a o<b>pção de busca e seleção</b> entre os tipos de fornecedores: <b> Alimentação, Lojas e Serviços</b>.
 
 ```js
 import React from "react";
@@ -65,4 +65,4 @@ export const MapContainer = () => {
 };
 ```
 
-O App.css é responsável pelo CSS de todo o código, de forma a utilizar as cores e fundos usados na marca da Zapt Tech em seu site afim de passar uma identificação para o usuário.
+O App.css é responsável pelo CSS de todo o código, de forma a utilizar <b>as cores e fundos usados na marca da Zapt Tech</b> em seu site afim de passar uma <b>identificação para o usuário</b>.
