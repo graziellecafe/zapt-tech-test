@@ -6,29 +6,30 @@ export const StoreList = () => {
   const [stores, setStores] = useState([]);
   const [loading, setLoading] = useState(true);
 
+  // Função para buscar lojas do backend
   useEffect(() => {
     const fetchStores = async () => {
       try {
-        console.log("Fazendo requisição ao backend...");
-
         const response = await axios.get("http://localhost:3001/stores");
-
         if (response.data) {
-          setStores(response.data);
-          console.log("Lojas recebidas do backend:", response.data);
+          setStores(response.data); // Atualiza o estado com os dados recebidos
+          console.log("Lojas recebidas:", response.data);
         } else {
-          console.error("Não há lojas disponíveis.");
+          console.error("Nenhuma loja disponível.");
         }
-
         setLoading(false);
       } catch (error) {
-        console.error("Erro ao carregar lojas", error);
+        console.error("Erro ao carregar lojas:", error);
         setLoading(false);
       }
     };
 
     fetchStores();
   }, []);
+
+  {
+    /* Está desse jeito passando o link do <iframe> diretamente para apenas renderizar direto a lista de Lojas*/
+  }
 
   return (
     <div className="iframe-container">
@@ -47,3 +48,28 @@ export const StoreList = () => {
     </div>
   );
 };
+
+{
+  /* O correto seria:
+    return (
+    <div className="iframe-container">
+    <h2> Lista de Lojas </h2>
+      {loading ? (
+        <p>Carregando lojas...</p>
+      ) : stores.length > 0 ? (
+        <ul>
+          {stores.map((store, index) => (
+            <li key={index}>
+              <h3>{store.name}</h3>
+              <p>Coordenadas: ({store.x}, {store.y})</p>
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <p>Nenhuma loja encontrada.</p>
+      )}
+    </div>
+  );
+}; 
+  */
+}

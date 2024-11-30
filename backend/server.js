@@ -6,9 +6,8 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// Autenticação
-const apiUrl =
-  "https://app.zapt.tech/#/interests?embed=true&placeId=-ltvysf4acgzdxdhf81y";
+// Autenticação e configuração
+const apiUrl = "https://api.zapt.tech/interests";
 const placeId = "-ltvysf4acgzdxdhf81y";
 const apiKey = "26ee8805-55f8-484a-a229-59d813131484";
 
@@ -16,11 +15,10 @@ app.get("/stores", async (req, res) => {
   try {
     const response = await axios.get(apiUrl, {
       headers: {
-        "x-access-token": apiKey, //  falta x-access
+        "x-access-token": apiKey,
       },
       params: {
         placeId,
-        apiKey,
       },
     });
 

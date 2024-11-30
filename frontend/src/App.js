@@ -1,41 +1,14 @@
 // App.js
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import axios from "axios";
 import "./App.css";
+
 import zaptLogo from "./images/zapt-logo.svg";
 import { MapContainer } from "./components/MapContainer";
 import { StoreList } from "./components/StoreList";
 import StoreDetails from "./components/StoreDetails";
 
 function App() {
-  const [stores, setStores] = useState([]); // armazenar lojas
-  const [loading, setLoading] = useState(true); // armazenar carregamentos
-
-  useEffect(() => {
-    const fetchStores = async () => {
-      try {
-        console.log("Fazendo requisição ao backend...");
-
-        const response = await axios.get("http://localhost:3001/stores");
-
-        if (response.data) {
-          setStores(response.data);
-          console.log("Lojas recebidas do backend:", response.data);
-        } else {
-          console.error("Não há lojas disponíveis.");
-        }
-
-        setLoading(false);
-      } catch (error) {
-        console.error("Erro ao carregar lojas", error);
-        setLoading(false);
-      }
-    };
-
-    fetchStores();
-  }, []);
-
   return (
     <Router>
       <div className="container">
