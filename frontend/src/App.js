@@ -28,6 +28,8 @@ function App() {
           <StoreList />
         </div>
 
+        {/* Checar lista de lojas:  http://localhost:5000/api/interests */}
+
         <footer className="footer">
           <h2>Zapt Tech</h2>
           <p>&copy; 2024 Zapt Tech</p>
