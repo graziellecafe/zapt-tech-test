@@ -1,17 +1,19 @@
-const api = require("../config/apiConfig"); // Corrija a importação com o caminho correto
+const axios = require("axios");
 
-const getStores = async (req, res) => {
+exports.getInterests = async (req, res) => {
   try {
-    const response = await api.get(); // Realiza a requisição
-    console.log("Resposta da API:", response.data); // Inspeciona os dados
-    const stores = response.data.stores; // Ajusta para acessar a chave correta
-    res.status(200).json(stores); // Retorna as lojas
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: "Erro ao obter lojas" });
-  }
-};
+    const response = await axios.get(
+      `https://api.zapt.tech/v1/maps/-ltvysf4acgzdxdhf81y/interests`,
+      {
+        headers: {
+          "x-api-key": "26ee8805-55f8-484a-a229-59d813131484",
+        },
+      }
+    );
 
-module.exports = {
-  getStores,
+    res.status(200).json(response.data); // Envia os dados obtidos da API Zapt Tech
+  } catch (error) {
+    console.error("Erro ao obter os dados da API:", error.message);
+    res.status(500).json({ error: "Erro ao obter os dados da API." });
+  }
 };
