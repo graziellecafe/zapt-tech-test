@@ -50,10 +50,10 @@ export const StoreList = () => {
 };
 
 {
-  /* O correto seria:
-    return (
+  /*
+  return (
     <div className="iframe-container">
-    <h2> Lista de Lojas </h2>
+      <h2> Lista de Lojas </h2>
       {loading ? (
         <p>Carregando lojas...</p>
       ) : stores.length > 0 ? (
@@ -61,7 +61,9 @@ export const StoreList = () => {
           {stores.map((store, index) => (
             <li key={index}>
               <h3>{store.name}</h3>
-              <p>Coordenadas: ({store.x}, {store.y})</p>
+              <p>
+                Coordenadas: ({store.x}, {store.y})
+              </p>
             </li>
           ))}
         </ul>
@@ -70,6 +72,5 @@ export const StoreList = () => {
       )}
     </div>
   );
-}; 
-  */
+};*/
 }
