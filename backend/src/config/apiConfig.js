@@ -1,5 +1,4 @@
 const axios = require("axios");
-
 const api = axios.create({
   baseURL: "https://api.zapt.tech/v2/interests", // URL da API que você está utilizando
   headers: {
@@ -9,5 +8,4 @@ const api = axios.create({
     placeId: "-ltvysf4acgzdxdhf81y", // Adapte conforme necessário
   },
 });
-
 module.exports = api;
