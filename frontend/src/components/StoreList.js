@@ -47,8 +47,8 @@ export const StoreList = () => {
               </p>
 
               <p>
-                <strong>Coordenadas: </strong> x: {store.coords[0]}, y:{" "}
-                {store.coords[1]}
+                <strong>Coordenadas: </strong> <strong>x:</strong>{" "}
+                {store.coords[0]}, <strong>y:</strong> {store.coords[1]}
               </p>
 
               <div className="tags">
