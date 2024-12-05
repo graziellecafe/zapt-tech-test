@@ -26,7 +26,7 @@ Deve abrir o <b>http://localhost:3000/</b>, renderizando do lado esquerdo o mapa
 
 No mapa do lado esquerdo temos a opção de visualizar o Mapa além das opções na parte inferior, como Início, Lista, Notícias e Mais.
 
-![Texto Alternativo](./frontend/src/images/tela-zapt-tech.png)
+![Tela com o Mapa da Zapt Tech](./frontend/src/images/tela-zapt-tech.png)
 
 <h2> 📝   Resolução dos Casos </h2>
 <h3> 👩🏻‍💻 Caso 1 </h3>
@@ -71,9 +71,9 @@ O App.css é responsável pelo CSS de todo o código, de forma a utilizar <b>as 
 
 <h3> 👩🏻‍💻 Caso 2 </h3>
 O Caso 2 a ser resolvido é <strong>listar todos os pontos de interesse (lojas) utilizando a API REST</strong>, método GET / interests.
-
+<br><br>
 Para a realização da obtenção dos dados vindos da API Zapt Tech foi utilizada a configuração da Arquitetura em Camadas, onde é organizado o código em diferentes níveis ou "camadas" para separar responsabilidades. Isso ajuda a manter o código mais limpo, reutilizável e fácil de entender.
-
+<br><br>
 Abaixo, a organização das pastas na parte do backend, necessária para fazer as requisições e chamadas à API da Zapt Tech e retornar ao cliente (frontend) as respostas.
 
 ```js
@@ -90,3 +90,10 @@ backend/
       ├── config/
       │   └── apiConfig.js
 ```
+
+<br><br>
+Agora, podemos visualizar do lado esquerdo o mapa disponibilizado com a possibilidade de navegar na parte inferior com Início, Mapa, Lista, Notícias e Mais.
+
+Também podemos realizar busca das lojas na parte superior do mapa e do lado esquerdo podemos visualizar o solicitado, ou seja, a listagem de lojas feita através da requisição da API GET / interests com informações importantes como nome da loja, andar, coordenadas (para realizar o Caso 3) e tags informativas sobre a loja.
+<br><br>
+![Tela com o Mapa da Zapt Tech](./frontend/src/images/lista-lojas-zapt-tech.png)
