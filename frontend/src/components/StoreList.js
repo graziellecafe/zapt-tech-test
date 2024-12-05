@@ -13,6 +13,13 @@ export const StoreList = () => {
     }
   }, [interests]);
 
+  // Função para capitalizar a primeira letra de cada palavra nas tags
+  const capitalizeTags = (tags) => {
+    return tags.map(
+      (tag) => tag.charAt(0).toUpperCase() + tag.slice(1).toLowerCase()
+    );
+  };
+
   if (loading) {
     return <div>Carregando...</div>;
   }
@@ -40,9 +47,22 @@ export const StoreList = () => {
               </p>
 
               <p>
-                <strong>Coordenadas: </strong> [<strong>x</strong>:{" "}
-                {store.coords[0]} , <strong>y</strong>: {store.coords[1]}]
+                <strong>Coordenadas: </strong> x: {store.coords[0]}, y:{" "}
+                {store.coords[1]}
               </p>
+
+              <div className="tags">
+                <strong>Tags: </strong>
+                {store.tags && store.tags.length > 0 ? (
+                  <ul>
+                    {capitalizeTags(store.tags).map((tag, index) => (
+                      <li key={index}>{tag}</li>
+                    ))}
+                  </ul>
+                ) : (
+                  <p>Sem tags disponíveis</p>
+                )}
+              </div>
             </div>
           </div>
         ))

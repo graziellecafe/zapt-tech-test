@@ -184,3 +184,30 @@ iframe {
   margin: 5px 0;
   color: #666;
 }
+
+.store-list .tags {
+  margin-top: 10px;
+}
+
+.store-list .tags ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.store-list .tags li {
+  background-color: #f5a267; /* Cor de fundo clara para contraste */
+  color: #333; /* Cor do texto */
+  padding: 5px 10px;
+  margin: 5px 5px;
+  border-radius: 5px; /* Bordas arredondadas */
+  display: inline-block;
+  font-size: 14px;
+}
+
+.store-list .tags li:hover {
+  background-color: #ddd; /* Alterar cor no hover para interação */
+}
+
+.tags {
+  color: #333;
+}
