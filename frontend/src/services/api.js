@@ -1,13 +1,13 @@
-const API_BASE_URL = "http://localhost:3001";
+// Arquivo para criar a instância do axios com a configuração necessária para fazer a requisição para a API
 
-export const fetchStoresByFloor = async (floor) => {
-  try {
-    const response = await fetch(`${API_BASE_URL}/stores?floor=${floor}`);
-    if (!response.ok) throw new Error("Erro ao buscar lojas.");
-    const data = await response.json();
-    return data.stores;
-  } catch (error) {
-    console.error("Erro na API:", error.message);
-    return [];
-  }
-};
+import axios from "axios";
+
+export const api = axios.create({
+  baseURL: "https://api.zapt.tech/v2/interests",
+  headers: {
+    "x-api-key": "26ee8805-55f8-484a-a229-59d813131484",
+  },
+  params: {
+    placeId: "-ltvysf4acgzdxdhf81y",
+  },
+});

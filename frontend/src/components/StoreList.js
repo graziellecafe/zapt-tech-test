@@ -1,75 +1,54 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
-import "../App.css";
+import React, { useEffect, useState } from "react";
+import { useFetchInterests } from "../hooks/useFetchInterests"; // Importando o hook para pegar os dados
 
 export const StoreList = () => {
+  const { interests, loading, error } = useFetchInterests(); // Usando o hook para pegar os dados
   const [stores, setStores] = useState([]);
-  const [loading, setLoading] = useState(true);
 
-  // Função para buscar lojas do backend
   useEffect(() => {
-    const fetchStores = async () => {
-      try {
-        const response = await axios.get("http://localhost:3001/stores");
-        if (response.data) {
-          setStores(response.data); // Atualiza o estado com os dados recebidos
-          console.log("Lojas recebidas:", response.data);
-        } else {
-          console.error("Nenhuma loja disponível.");
-        }
-        setLoading(false);
-      } catch (error) {
-        console.error("Erro ao carregar lojas:", error);
-        setLoading(false);
-      }
-    };
+    if (interests && Object.keys(interests).length > 0) {
+      // Processar os dados das lojas
+      const storeList = Object.values(interests); // Supondo que o dado seja um objeto de lojas
+      setStores(storeList);
+    }
+  }, [interests]);
 
-    fetchStores();
-  }, []);
+  if (loading) {
+    return <div>Carregando...</div>;
+  }
 
-  {
-    /* Está desse jeito passando o link do <iframe> diretamente para apenas renderizar direto a lista de Lojas*/
+  if (error) {
+    return <div>Erro ao carregar as lojas: {error.message}</div>;
   }
 
   return (
-    <div className="iframe-container">
-      {loading ? (
-        <p>Carregando lojas...</p>
+    <div className="store-list">
+      {stores.length > 0 ? (
+        stores.map((store) => (
+          <div className="store-item" key={store.id}>
+            <div className="store-image">
+              <img src={store.media} alt={store.title} className="store-img" />
+            </div>
+            <div className="store-info">
+              <p>
+                <strong>Loja: </strong>
+                {store.title}
+              </p>
+
+              <p>
+                <strong>Andar: </strong> {store.floorId}º andar
+              </p>
+
+              <p>
+                <strong>Coordenadas: </strong> [<strong>x</strong>:{" "}
+                {store.coords[0]} , <strong>y</strong>: {store.coords[1]}]
+              </p>
+            </div>
+          </div>
+        ))
       ) : (
-        <iframe
-          src="https://app.zapt.tech/#/interests?embed=true&placeId=-ltvysf4acgzdxdhf81y"
-          title="Lista de Lojas"
-          style={{
-            width: "100%",
-            height: "100%",
-            border: "none",
-          }}></iframe>
+        <div>Nenhuma loja encontrada.</div>
       )}
     </div>
   );
 };
-
-{
-  /* O correto seria:
-    return (
-    <div className="iframe-container">
-    <h2> Lista de Lojas </h2>
-      {loading ? (
-        <p>Carregando lojas...</p>
-      ) : stores.length > 0 ? (
-        <ul>
-          {stores.map((store, index) => (
-            <li key={index}>
-              <h3>{store.name}</h3>
-              <p>Coordenadas: ({store.x}, {store.y})</p>
-            </li>
-          ))}
-        </ul>
-      ) : (
-        <p>Nenhuma loja encontrada.</p>
-      )}
-    </div>
-  );
-}; 
-  */
-}

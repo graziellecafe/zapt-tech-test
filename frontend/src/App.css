@@ -14,7 +14,7 @@ html {
   color: #fff;
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  min-height: 100vh; /* Alterado de height para min-height */
   background: url("./images/bg-site.jpg");
 }
 
@@ -44,14 +44,24 @@ html {
   padding: 20px;
   position: relative;
   z-index: 1;
+  overflow: auto; /* Para que o conteúdo role */
 }
 
 .map-container {
-  flex: 1;
-  background-color: rgba(255, 255, 255, 0.8);
+  width: 50%; /* Ocupa metade da tela */
+  height: calc(
+    100vh - 80px
+  ); /* Ajuste para ocupar o espaço disponível, levando em conta o header e footer */
+  float: left;
+}
+
+.map-iframe {
   border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  margin-right: 10px;
+  flex: 1;
+  width: 100%;
+  height: 100%;
+  border: none;
+  background-color: rgba(255, 255, 255, 0.8);
 }
 
 .iframe-container {
@@ -99,6 +109,7 @@ iframe {
   text-decoration: underline;
 }
 
+/* Fixando o footer no final da tela */
 .footer {
   display: flex;
   align-items: center;
@@ -109,6 +120,10 @@ iframe {
   padding: 1rem;
   flex-direction: column;
   text-align: center;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  z-index: 10; /* Coloca o footer acima do conteúdo */
 }
 
 .footer h2 {
@@ -120,4 +135,52 @@ iframe {
 .footer p {
   margin-top: 5px;
   font-size: 1rem;
+}
+
+/* Ajustes para a StoreList */
+.store-list {
+  width: 50%; /* Ocupa metade da tela */
+  height: calc(100vh - 80px); /* Ajuste para ocupar o espaço disponível */
+  overflow-y: auto; /* Permite rolar as lojas */
+  padding: 20px;
+  margin: 0px;
+  float: right; /* Fica do lado direito */
+}
+
+.store-item {
+  display: flex;
+  margin-bottom: 20px;
+  padding: 10px;
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.store-image {
+  flex-shrink: 0;
+  margin-right: 15px;
+}
+
+.store-img {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%; /* Faz a imagem ficar redonda */
+  object-fit: cover;
+}
+
+.store-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.store-info h2 {
+  margin: 0;
+  font-size: 1.2rem;
+  color: #333;
+}
+
+.store-info p {
+  margin: 5px 0;
+  color: #666;
 }

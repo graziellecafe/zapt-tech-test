@@ -7,11 +7,7 @@ export const MapContainer = () => {
       <iframe
         src="https://app.zapt.tech/#/map?placeId=-ltvysf4acgzdxdhf81y&search=true"
         title="Zapt Tech Map"
-        style={{
-          width: "100%",
-          height: "100%",
-          border: "none",
-        }}></iframe>
+        className="map-iframe"></iframe>
     </div>
   );
 };
