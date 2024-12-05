@@ -51,7 +51,7 @@ html {
   width: 50%; /* Ocupa metade da tela */
   height: 70vh; /* Diminui a altura do mapa para 75% da altura da tela */
   float: left;
-  padding-top: 20px;
+  padding-top: 20spx;
 }
 
 .map-iframe {

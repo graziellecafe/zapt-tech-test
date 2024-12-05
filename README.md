@@ -43,7 +43,9 @@ Dados para integração:
 - API_KEY: 26ee8805-55f8-484a-a229-59d813131484
 ```
 
-Para a resolução do Caso 1, foi codificado o componente <b>MapContainer.js</b> que integra via iframe o link disponibilizado na documentação o mapa de exemplo para resolução do desafio técnico pela Zapt Tech. Foi adicionado algumas opções para ser mostrado junto ao mapa como <b>Início, Mapa, Lista, News e Mais</b> e a o<b>pção de busca e seleção</b> entre os tipos de fornecedores: <b> Alimentação, Lojas e Serviços</b>.
+Para a resolução do Caso 1, foi codificado o componente <b>MapContainer.js</b> que integra via iframe o link disponibilizado na documentação o mapa de exemplo para resolução do desafio técnico pela Zapt Tech.
+
+Foi adicionado algumas opções para ser mostrado junto ao mapa como <b>Início, Mapa, Lista, News e Mais</b> e a <b>opção de busca e seleção</b> entre os tipos de fornecedores: <b> Alimentação, Lojas e Serviços</b>.
 
 ```js
 import React from "react";
@@ -66,3 +68,25 @@ export const MapContainer = () => {
 ```
 
 O App.css é responsável pelo CSS de todo o código, de forma a utilizar <b>as cores e fundos usados na marca da Zapt Tech</b> em seu site afim de passar uma <b>identificação para o usuário</b>.
+
+<h3> 👩🏻‍💻 Caso 2 </h3>
+O Caso 2 a ser resolvido é <strong>listar todos os pontos de interesse (lojas) utilizando a API REST</strong>, método GET / interests.
+
+Para a realização da obtenção dos dados vindos da API Zapt Tech foi utilizada a configuração da Arquitetura em Camadas, onde é organizado o código em diferentes níveis ou "camadas" para separar responsabilidades. Isso ajuda a manter o código mais limpo, reutilizável e fácil de entender.
+
+Abaixo, a organização das pastas na parte do backend, necessária para fazer as requisições e chamadas à API da Zapt Tech e retornar ao cliente (frontend) as respostas.
+
+```js
+backend/
+  ├── server.js
+  └── .env
+  └── src/
+      ├── controllers/
+      │   └── storeController.js
+      ├── routes/
+      │   └── storeRoutes.js
+      ├── services/
+      │   └── api.js
+      ├── config/
+      │   └── apiConfig.js
+```
