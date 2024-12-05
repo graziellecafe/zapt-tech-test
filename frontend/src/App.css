@@ -209,3 +209,12 @@ iframe {
 .tags {
   color: #333;
 }
+
+/* Ajuste do z-index para o modal */
+.ReactModal__Overlay {
+  z-index: 1000; /* Garante que o modal fique acima de outros elementos */
+}
+
+.ReactModal__Content {
+  z-index: 1010; /* Garante que o conteúdo do modal fique acima do overlay */
+}

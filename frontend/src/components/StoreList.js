@@ -1,14 +1,18 @@
 import React, { useEffect, useState } from "react";
 import { useFetchInterests } from "../hooks/useFetchInterests"; // Importando o hook para pegar os dados
+import Modal from "react-modal"; // Importando o Modal
+
+Modal.setAppElement("#root"); // Definir o nó de raiz da aplicação para o Modal
 
 export const StoreList = () => {
   const { interests, loading, error } = useFetchInterests(); // Usando o hook para pegar os dados
   const [stores, setStores] = useState([]);
+  const [modalIsOpen, setModalIsOpen] = useState(false); // Estado para controlar a abertura do Modal
+  const [selectedStore, setSelectedStore] = useState(null); // Estado para armazenar a loja selecionada
 
   useEffect(() => {
     if (interests && Object.keys(interests).length > 0) {
-      // Processar os dados das lojas
-      const storeList = Object.values(interests); // Supondo que o dado seja um objeto de lojas
+      const storeList = Object.values(interests); // Convertendo as lojas para um array
       setStores(storeList);
     }
   }, [interests]);
@@ -18,6 +22,18 @@ export const StoreList = () => {
     return tags.map(
       (tag) => tag.charAt(0).toUpperCase() + tag.slice(1).toLowerCase()
     );
+  };
+
+  // Função para abrir o Modal com a loja selecionada
+  const openModal = (store) => {
+    setSelectedStore(store); // Armazenando a loja selecionada
+    setModalIsOpen(true); // Abrindo o modal
+  };
+
+  // Função para fechar o Modal
+  const closeModal = () => {
+    setModalIsOpen(false); // Fechando o modal
+    setSelectedStore(null); // Limpando a loja selecionada
   };
 
   if (loading) {
@@ -33,10 +49,10 @@ export const StoreList = () => {
       {stores.length > 0 ? (
         stores.map((store) => (
           <div className="store-item" key={store.id}>
-            <div className="store-image">
+            <div className="store-image" onClick={() => openModal(store)}>
               <img src={store.media} alt={store.title} className="store-img" />
             </div>
-            <div className="store-info">
+            <div className="store-info" onClick={() => openModal(store)}>
               <p>
                 <strong>Loja: </strong>
                 {store.title}
@@ -69,6 +85,33 @@ export const StoreList = () => {
       ) : (
         <div>Nenhuma loja encontrada.</div>
       )}
+
+      {/* Modal com a foto e nome da loja selecionada */}
+      <Modal
+        isOpen={modalIsOpen}
+        onRequestClose={closeModal}
+        contentLabel="Detalhes da Loja"
+        style={{
+          content: {
+            padding: "20px",
+            borderRadius: "10px",
+            maxWidth: "400px",
+            margin: "auto",
+            textAlign: "center",
+          },
+        }}>
+        {selectedStore && (
+          <>
+            <img
+              src={selectedStore.media}
+              alt={selectedStore.title}
+              style={{ width: "150px", height: "150px", borderRadius: "50%" }}
+            />
+            <h3>{selectedStore.title}</h3>
+            <button onClick={closeModal}>Fechar</button>
+          </>
+        )}
+      </Modal>
     </div>
   );
 };
