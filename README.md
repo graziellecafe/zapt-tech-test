@@ -91,9 +91,48 @@ backend/
       │   └── apiConfig.js
 ```
 
+E agora a disponibilização de arquivos do lado do front end:
+
+```
+frontend/
+  ├── App.js
+  └── App.css
+  └── index.js
+  └── src/
+      ├── components/
+      │   └── MapContainer.js
+          └── StoreDetails.js
+          └── StoreList.js
+      ├── hooks/
+      │   └── useSearchInterests.js
+      ├── images/
+      │   └── bg-contato.jpg
+      │   └── bg-site.jpg
+      │   └── lista-lojas-zapt-tech.png
+      │   └── tela-zapt-tech.png
+      │   └── distancia-euclidiana.png
+```
+
 <br><br>
 Agora, podemos visualizar do lado esquerdo o mapa disponibilizado com a possibilidade de navegar na parte inferior com Início, Mapa, Lista, Notícias e Mais.
 
 Também podemos realizar busca das lojas na parte superior do mapa e do lado esquerdo podemos visualizar o solicitado, ou seja, a listagem de lojas feita através da requisição da API GET / interests com informações importantes como nome da loja, andar, coordenadas (para realizar o Caso 3) e tags informativas sobre a loja.
 <br><br>
 ![Tela com o Mapa da Zapt Tech](./frontend/src/images/lista-lojas-zapt-tech.png)
+
+<h3> 👩🏻‍💻 Caso 3 </h3>
+Para o caso 3, foi proposto mostrar informações da loja que foi selecionada na  lista. Nessa págna,também queremos que você exiba as duas lojas mais próximas da selecionada e a distância em linha reta. Para isso, nossa API retorna as coordenas XY (em pixel) da loja. Considere também que a escala é px/metro é 25.
+
+Com isso, com as informações das lojas já está aparecendo na loja principal, foi criado um Modal simples que mostra apenas a foto da loja, o andar que ela se encontra, e as duas lojas mais próximas com sua devida distância em linha reta.
+
+O código utilizado para realizar o cálculo de distância é o através do cálculo conhecido como **distância euclidiana** no contexto bidimensional. Como temos os valores de XYm podemos utilizar esses dados vindos da API para calcular a distência entre dois pontos em pixels, e depois converte o resultado para metros.
+
+![Fórmula distância euclidiana](./frontend/src/images/distancia-euclidiana.png)
+
+E para visualizarmos essas informações foi criado o componente Modal passando as informações necessárias para ele (está no arquivo frontend/src/components/StoreList.js). Podemos visualizar o Modal criado:
+
+![Modal](./frontend/src/images/modal-zapt.png)
+
+Por fim, chegamos ao fim do desafio técnico.Qualquer dúvida, entre em contao!
+
+**Contato**: [Linkedin Grazielle Café](https://www.linkedin.com/in/graziellecafe/)
