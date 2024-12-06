@@ -253,12 +253,22 @@ iframe {
 
 /* Estilos do Modal */
 .modal-content {
-  max-width: 600px; /* Limita a largura do modal */
-  margin: 50px auto; /* Centraliza o modal */
-  padding: 20px; /* Adiciona espaçamento dentro do modal */
-  background-color: #0056b3;
-  border-radius: 20px; /* Bordas arredondadas */
-  box-shadow: 0px 20px 40px 0px #da702a; /* Sombra para destacar */
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #da702a;
+  box-shadow: 0px 20px 40px 0px #0056b3;
+  padding: 20px;
+  max-width: 600px;
+  width: 100%;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  z-index: 9999;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .modal-header {
@@ -295,7 +305,7 @@ iframe {
 .nearby-store-card {
   font-family: "Quicksand", sans-serif;
   text-align: center;
-  width: 45%; /* Ajusta para que as lojas fiquem uma ao lado da outra */
+  width: 45%;
 }
 
 .nearby-store-image {
@@ -311,8 +321,8 @@ iframe {
 }
 
 .nearby-store-floor {
-  font-size: 12px;
-  color: #777;
+  font-size: 18px;
+  color: white;
 }
 
 .nearby-store-distance {
@@ -321,19 +331,21 @@ iframe {
 }
 
 .modal-close-button:hover {
-  background-color: #119eea;
+  background-color: white;
+  color: #333;
 }
 
 .modal-close-button {
   margin-top: 20px;
   padding: 10px 30px;
-  background-color: #e05d31;
+  background-color: #119eea;
   color: white;
   border: none;
   cursor: pointer;
   border-radius: 20px;
   font-size: 16px;
   font-family: "Quicksand", sans-serif;
+  align-self: center;
 }
 
 .modal-h3 {
