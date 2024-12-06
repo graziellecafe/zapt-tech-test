@@ -119,9 +119,10 @@ export const StoreList = () => {
                 alt={selectedStore.title}
                 className="modal-image"
               />
-              <h3 className="modal-h3">Detalhes da Loja</h3>
-              <p className="modal-p">Andar: {selectedStore.floorId}º andar</p>
-              <h3>Lojas mais próximas:</h3>
+              <p className="nearby-store-floor">
+                Andar: {selectedStore.floorId}º andar
+              </p>
+              <h3 className="nearby-store-floor">Lojas mais próximas:</h3>
               <div className="nearby-stores">
                 {findNearbyStores(selectedStore.coords)
                   .slice(0, 2) // Limita às duas lojas mais próximas

@@ -48,10 +48,10 @@ html {
 }
 
 .map-container {
-  width: 50%; /* Ocupa metade da tela */
-  height: 70vh; /* Diminui a altura do mapa para 75% da altura da tela */
+  width: 50%;
+  height: 70vh;
   float: left;
-  padding-top: 20spx;
+  padding-top: 20px;
 }
 
 .map-iframe {
@@ -239,6 +239,7 @@ iframe {
 .store-img {
   width: 100%;
   height: 100%;
+  cursor: pointer;
 }
 
 .tags ul {
@@ -264,7 +265,7 @@ iframe {
   width: 100%;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
   z-index: 9999;
-  border-radius: 8px;
+  border-radius: 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -306,12 +307,13 @@ iframe {
   font-family: "Quicksand", sans-serif;
   text-align: center;
   width: 45%;
+  color: white;
 }
 
 .nearby-store-image {
   border-radius: 50%;
-  width: 60px;
-  height: 60px;
+  width: 100px;
+  height: 100px;
   object-fit: cover;
 }
 
@@ -331,8 +333,8 @@ iframe {
 }
 
 .modal-close-button:hover {
-  background-color: white;
-  color: #333;
+  background-color: #055ba0;
+  color: white;
 }
 
 .modal-close-button {
@@ -350,6 +352,7 @@ iframe {
 
 .modal-h3 {
   font-size: 24px;
+  color: white;
 }
 
 .nearby-store-distance {
