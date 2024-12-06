@@ -3,13 +3,13 @@
 import { useState, useEffect } from "react";
 import { api } from "../services/api";
 
-export const useFetchInterests = () => {
+export const useSearchInterests = () => {
   const [interests, setInterests] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    const fetchInterests = async () => {
+    const searchInterests = async () => {
       try {
         const response = await api.get();
         setInterests(response.data); //
@@ -20,7 +20,7 @@ export const useFetchInterests = () => {
       }
     };
 
-    fetchInterests();
+    searchInterests();
   }, []);
 
   return { interests, loading, error };

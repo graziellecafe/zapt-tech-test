@@ -1,40 +1,37 @@
 import React, { useEffect, useState } from "react";
-import { useFetchInterests } from "../hooks/useFetchInterests"; // Importando o hook para pegar os dados
-import Modal from "react-modal"; // Importando o Modal
+import { useSearchInterests } from "../hooks/useSearchInterests";
+import Modal from "react-modal";
 import "../App.css";
 
-Modal.setAppElement("#root"); // Definir o nó de raiz da aplicação para o Modal
+Modal.setAppElement("#root");
 
 export const StoreList = () => {
-  const { interests, loading, error } = useFetchInterests(); // Usando o hook para pegar os dados
+  const { interests, loading, error } = useSearchInterests();
   const [stores, setStores] = useState([]);
-  const [modalIsOpen, setModalIsOpen] = useState(false); // Estado para controlar a abertura do Modal
-  const [selectedStore, setSelectedStore] = useState(null); // Estado para armazenar a loja selecionada
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [selectedStore, setSelectedStore] = useState(null);
 
   useEffect(() => {
     if (interests && Object.keys(interests).length > 0) {
-      const storeList = Object.values(interests); // Convertendo as lojas para um array
+      const storeList = Object.values(interests);
       setStores(storeList);
     }
   }, [interests]);
 
-  // Função para capitalizar a primeira letra de cada palavra nas tags
   const capitalizeTags = (tags) => {
     return tags.map(
       (tag) => tag.charAt(0).toUpperCase() + tag.slice(1).toLowerCase()
     );
   };
 
-  // Função para abrir o Modal com a loja selecionada
   const openModal = (store) => {
-    setSelectedStore(store); // Armazenando a loja selecionada
-    setModalIsOpen(true); // Abrindo o modal
+    setSelectedStore(store);
+    setModalIsOpen(true);
   };
 
-  // Função para fechar o Modal
   const closeModal = () => {
-    setModalIsOpen(false); // Fechando o modal
-    setSelectedStore(null); // Limpando a loja selecionada
+    setModalIsOpen(false);
+    setSelectedStore(null);
   };
 
   const calculateDistance = (coords1, coords2) => {
@@ -49,7 +46,7 @@ export const StoreList = () => {
 
   const findNearbyStores = (coords) => {
     return stores
-      .filter((store) => store.coords !== coords) // Excluindo a loja selecionada
+      .filter((store) => store.coords !== coords)
       .map((store) => ({
         ...store,
         distance: calculateDistance(coords, store.coords),
@@ -125,7 +122,7 @@ export const StoreList = () => {
               <h3 className="nearby-store-floor">Lojas mais próximas:</h3>
               <div className="nearby-stores">
                 {findNearbyStores(selectedStore.coords)
-                  .slice(0, 2) // Limita às duas lojas mais próximas
+                  .slice(0, 2)
                   .map((store, index) => (
                     <div className="nearby-store-card" key={index}>
                       <img

@@ -107,7 +107,6 @@ iframe {
   text-decoration: underline;
 }
 
-/* Fixando o footer no final da tela */
 .footer {
   display: flex;
   align-items: center;
@@ -120,8 +119,8 @@ iframe {
   text-align: center;
   position: fixed;
   width: 100%;
-  bottom: 0; /* Fixa o footer na parte inferior */
-  z-index: 10; /* Coloca o footer acima do conteúdo */
+  bottom: 0;
+  z-index: 10;
 }
 
 .footer h2 {
@@ -135,10 +134,9 @@ iframe {
   font-size: 1rem;
 }
 
-/* Ajustes para a StoreList */
 .store-list {
-  width: 50%; /* Ocupa metade da tela */
-  height: calc(100vh - 120px); /* Ajuste para ocupar o espaço disponível */
+  width: 50%;
+  height: calc(100vh - 120px);
   overflow-y: auto;
   padding: 20px;
   margin: 0px;
@@ -210,16 +208,14 @@ iframe {
   color: #333;
 }
 
-/* Ajuste do z-index para o modal */
 .ReactModal__Overlay {
-  z-index: 1000; /* Garante que o modal fique acima de outros elementos */
+  z-index: 1000;
 }
 
 .ReactModal__Content {
-  z-index: 1010; /* Garante que o conteúdo do modal fique acima do overlay */
+  z-index: 1010;
 }
 
-/* Estilo básico para o layout das lojas */
 .store-item {
   display: flex;
   margin-bottom: 20px;
@@ -252,18 +248,16 @@ iframe {
   margin-right: 10px;
 }
 
-/* Estilos do Modal */
 .modal-content {
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   background-color: #da702a;
-  box-shadow: 0px 20px 40px 0px #0056b3;
   padding: 20px;
   max-width: 600px;
   width: 100%;
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 10px 10px 20px rgba(54, 43, 43, 1);
   z-index: 9999;
   border-radius: 20px;
   display: flex;

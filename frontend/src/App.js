@@ -1,4 +1,3 @@
-// App.js
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./App.css";
@@ -27,8 +26,6 @@ function App() {
           <MapContainer />
           <StoreList />
         </div>
-
-        {/* Checar lista de lojas:  http://localhost:5000/api/interests */}
 
         <footer className="footer">
           <h2>Zapt Tech</h2>
