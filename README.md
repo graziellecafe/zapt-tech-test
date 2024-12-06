@@ -133,6 +133,6 @@ E para visualizarmos essas informações foi criado o componente Modal passando 
 
 ![Modal](./frontend/src/images/modal-zapt.png)
 
-Por fim, chegamos ao fim do desafio técnico.Qualquer dúvida, entre em contao!
+Por fim, chegamos ao fim do desafio técnico. Qualquer dúvida, entre em contato!
 
 **Contato**: [Linkedin Grazielle Café](https://www.linkedin.com/in/graziellecafe/)

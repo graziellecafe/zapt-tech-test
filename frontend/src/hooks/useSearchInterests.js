@@ -12,7 +12,7 @@ export const useSearchInterests = () => {
     const searchInterests = async () => {
       try {
         const response = await api.get();
-        setInterests(response.data); //
+        setInterests(response.data);
         setLoading(false);
       } catch (err) {
         setError(err);
