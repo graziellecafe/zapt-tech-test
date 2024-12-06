@@ -218,3 +218,103 @@ iframe {
 .ReactModal__Content {
   z-index: 1010; /* Garante que o conteúdo do modal fique acima do overlay */
 }
+
+/* Estilo básico para o layout das lojas */
+.store-item {
+  display: flex;
+  margin-bottom: 20px;
+}
+
+.store-image img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.store-info {
+  margin-left: 20px;
+}
+
+.store-img {
+  width: 100%;
+  height: 100%;
+}
+
+.tags ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.tags li {
+  display: inline;
+  margin-right: 10px;
+}
+
+/* Estilos do Modal */
+.modal-content {
+  width: 80%;
+  max-width: 600px;
+  margin: auto;
+  padding: 20px;
+  background: white;
+  border-radius: 10px;
+}
+
+.modal-header {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.modal-body {
+  margin-bottom: 20px;
+}
+
+.modal-image {
+  width: 100%;
+  height: auto;
+  margin-bottom: 20px;
+}
+
+.nearby-stores {
+  display: flex;
+  gap: 15px;
+}
+
+.nearby-store-card {
+  width: 100px;
+  text-align: center;
+}
+
+.nearby-store-image {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 10px;
+}
+
+.nearby-store-name {
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.nearby-store-floor {
+  font-size: 12px;
+  color: #777;
+}
+
+.modal-close-button {
+  background-color: #ff5f5f;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 100%;
+}
+
+.modal-close-button:hover {
+  background-color: #ff3f3f;
+}

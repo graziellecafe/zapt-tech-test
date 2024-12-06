@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useFetchInterests } from "../hooks/useFetchInterests"; // Importando o hook para pegar os dados
+import "../App.css";
 import Modal from "react-modal"; // Importando o Modal
 
 Modal.setAppElement("#root"); // Definir o nó de raiz da aplicação para o Modal
@@ -22,6 +23,25 @@ export const StoreList = () => {
     return tags.map(
       (tag) => tag.charAt(0).toUpperCase() + tag.slice(1).toLowerCase()
     );
+  };
+
+  // Função para calcular a distância entre coordenadas (x, y)
+  const calculateDistance = (coords1, coords2) => {
+    const xDiff = coords1[0] - coords2[0];
+    const yDiff = coords1[1] - coords2[1];
+    return Math.sqrt(xDiff * xDiff + yDiff * yDiff);
+  };
+
+  // Função para encontrar lojas mais próximas
+  const findNearbyStores = (selectedCoords) => {
+    return stores
+      .filter((store) => store.coords !== selectedCoords) // Exclui a loja selecionada
+      .sort(
+        (a, b) =>
+          calculateDistance(selectedCoords, a.coords) -
+          calculateDistance(selectedCoords, b.coords)
+      )
+      .slice(0, 2); // Retorna até 2 lojas mais próximas
   };
 
   // Função para abrir o Modal com a loja selecionada
@@ -91,24 +111,42 @@ export const StoreList = () => {
         isOpen={modalIsOpen}
         onRequestClose={closeModal}
         contentLabel="Detalhes da Loja"
-        style={{
-          content: {
-            padding: "20px",
-            borderRadius: "10px",
-            maxWidth: "400px",
-            margin: "auto",
-            textAlign: "center",
-          },
-        }}>
+        className="modal-content">
         {selectedStore && (
           <>
-            <img
-              src={selectedStore.media}
-              alt={selectedStore.title}
-              style={{ width: "150px", height: "150px", borderRadius: "50%" }}
-            />
-            <h3>{selectedStore.title}</h3>
-            <button onClick={closeModal}>Fechar</button>
+            <div className="modal-header">{selectedStore.title}</div>
+            <div className="modal-body">
+              <img
+                src={selectedStore.media}
+                alt={selectedStore.title}
+                className="modal-image"
+              />
+              <h3>Detalhes da Loja</h3>
+              <p>
+                <strong>Andar:</strong> {selectedStore.floorId}º andar
+              </p>
+              <p>
+                <strong>Coordenadas:</strong> x: {selectedStore.coords[0]}, y:{" "}
+                {selectedStore.coords[1]}
+              </p>
+              <h3>Lojas mais próximas:</h3>
+              <div className="nearby-stores">
+                {findNearbyStores(selectedStore.coords).map((store, index) => (
+                  <div className="nearby-store-card" key={index}>
+                    <img
+                      src={store.media}
+                      alt={store.title}
+                      className="nearby-store-image"
+                    />
+                    <p className="nearby-store-name">{store.title}</p>
+                    <p className="nearby-store-floor">{store.floorId}º andar</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <button className="modal-close-button" onClick={closeModal}>
+              Fechar
+            </button>
           </>
         )}
       </Modal>
