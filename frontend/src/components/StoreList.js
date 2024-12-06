@@ -37,38 +37,24 @@ export const StoreList = () => {
     setSelectedStore(null); // Limpando a loja selecionada
   };
 
-  // Função para calcular a distância entre duas lojas (utilizando Haversine para coordenadas geográficas)
   const calculateDistance = (coords1, coords2) => {
-    const lat1 = coords1[0];
-    const lon1 = coords1[1];
-    const lat2 = coords2[0];
-    const lon2 = coords2[1];
-
-    const R = 6371; // Raio da Terra em km
-    const dLat = ((lat2 - lat1) * Math.PI) / 180;
-    const dLon = ((lon2 - lon1) * Math.PI) / 180;
-
-    const a =
-      Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-      Math.cos((lat1 * Math.PI) / 180) *
-        Math.cos((lat2 * Math.PI) / 180) *
-        Math.sin(dLon / 2) *
-        Math.sin(dLon / 2);
-    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-
-    return R * c; // Distância em km
+    const [x1, y1] = coords1;
+    const [x2, y2] = coords2;
+    const dx = x2 - x1;
+    const dy = y2 - y1;
+    const distanceInPixels = Math.sqrt(dx * dx + dy * dy);
+    const distanceInMeters = distanceInPixels / 25; // Convertendo de pixels para metros
+    return distanceInMeters;
   };
 
-  // Função para encontrar as lojas mais próximas, excluindo a loja selecionada
   const findNearbyStores = (coords) => {
     return stores
-      .filter((store) => store.coords !== coords) // Exclui a loja selecionada
+      .filter((store) => store.coords !== coords) // Excluindo a loja selecionada
       .map((store) => ({
         ...store,
-        distance: calculateDistance(coords, store.coords), // Calcula a distância
+        distance: calculateDistance(coords, store.coords),
       }))
-      .sort((a, b) => a.distance - b.distance) // Ordena as lojas pela distância
-      .slice(0, 2); // Limita às duas lojas mais próximas
+      .sort((a, b) => a.distance - b.distance); // Ordenando pela menor distância
   };
 
   if (loading) {
@@ -118,7 +104,7 @@ export const StoreList = () => {
         <div>Nenhuma loja encontrada.</div>
       )}
 
-      {/* Modal com a foto e nome da loja selecionada */}
+      {/* Modal com as lojas mais próximas */}
       <Modal
         isOpen={modalIsOpen}
         onRequestClose={closeModal}
@@ -133,14 +119,19 @@ export const StoreList = () => {
                 alt={selectedStore.title}
                 className="modal-image"
               />
-              <h3 className="modal-h3">Detalhes da Loja</h3>
+              <h3>Detalhes da Loja</h3>
               <p>
                 <strong>Andar:</strong> {selectedStore.floorId}º andar
               </p>
+              <p>
+                <strong>Coordenadas:</strong> x: {selectedStore.coords[0]}, y:{" "}
+                {selectedStore.coords[1]}
+              </p>
               <h3>Lojas mais próximas:</h3>
               <div className="nearby-stores">
-                {findNearbyStores(selectedStore.coords).map((store, index) => {
-                  return (
+                {findNearbyStores(selectedStore.coords)
+                  .slice(0, 2) // Limita às duas lojas mais próximas
+                  .map((store, index) => (
                     <div className="nearby-store-card" key={index}>
                       <img
                         src={store.media}
@@ -148,17 +139,19 @@ export const StoreList = () => {
                         className="nearby-store-image"
                       />
                       <p className="nearby-store-name">{store.title}</p>
+                      <p className="nearby-store-floor">
+                        {store.floorId}º andar
+                      </p>
                       <p className="nearby-store-distance">
-                        Distância: {store.distance.toFixed(2)} km
+                        Distância: {store.distance.toFixed(2)} metros
                       </p>
                     </div>
-                  );
-                })}
+                  ))}
               </div>
-              <button className="modal-close-button" onClick={closeModal}>
-                Fechar
-              </button>
             </div>
+            <button className="modal-close-button" onClick={closeModal}>
+              Fechar
+            </button>
           </>
         )}
       </Modal>
